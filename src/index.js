@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import setRootPixel from '@arco-design/mobile-react/tools/flexible';
+import '@arco-design/mobile-react/esm/style';
 
+setRootPixel(37.5);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

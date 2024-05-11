@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import setRootPixel from '@arco-design/mobile-react/tools/flexible';
 import '@arco-design/mobile-react/esm/style';
 
-setRootPixel(37.5);
+setRootPixel(50);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

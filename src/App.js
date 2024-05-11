@@ -1,12 +1,11 @@
 import './App.css';
-import { Button } from '@arco-design/mobile-react';
-
+import Nav from './nav';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Button>AAA</Button>
-      </header>
+      <div className="App-Nav">
+        <Nav />
+      </div>
     </div>
   );
 }

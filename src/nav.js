@@ -21,21 +21,21 @@ export default function Nav(props) {
 
     const tabs = [
         {
-            title: 'Home',
+            title: '首页',
             icon: <IconHome />,
         },
         {
-            title: 'Diary',
+            title: '日记',
             icon: <IconFile />,
         },
         {
-            title: 'Account',
+            title: '记账',
             icon: <IconShopping />,
         },
-        {
-            title: 'Settings',
-            icon: <IconSetting />,
-        },
+        // {
+        //     title: '设置',
+        //     icon: <IconSetting />,
+        // },
     ];
     return (
         <TabBar fixed={true} activeIndex={activeIndex} onChange={handleChange}>

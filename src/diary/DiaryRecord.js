@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { Form, Button, Textarea } from '@arco-design/mobile-react';
+import request from '../utils/request';
+import notify from '../utils/notify';
 
 export default function DiaryRecord() {
     const formRef = useRef(null);
@@ -9,9 +11,17 @@ export default function DiaryRecord() {
     };
     const onSubmit = (values, result) => {
         console.log(values);
+        request.post('/diary/create', values).then(res => {
+            console.log(res, res.code === 0);
+            if (res.code === 0) {
+                formRef.current.form.resetFields();
+                notify('success', { content: '记录成功' });
+            }
+        });
     }
     return (<>
         <Form ref={formRef}
+            initialValues={{ content: '' }}
             onSubmit={onSubmit}
             layout='vertical'>
             <span>记录今天的生活</span>

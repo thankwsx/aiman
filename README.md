@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# 项目初衷
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+使用过各种网站、应用，个人信息散落在网络的各处，有时候忘了账号或者密码，甚至没法找回自己的信息，这些信息的归属也不甚明了，自己甚至没有自己信息的所有权。
 
-## Available Scripts
+所以一直想构建一个个人数字中心，看过的书，电影，音乐，做过的事，每天的感想，经济状况等等，林林总总都可以统一查看。
 
-In the project directory, you can run:
+未来随着AI技术的发展，这些信息聚拢在一起也说不定可以帮助AI对自己进行分析，提出一些合理化建议等等。所以项目名叫AIMAN。
 
-### `npm start`
+又或者打造一个分布式朋友圈？
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 短期计划
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+目前的计划是先将日记和经济状况功能进行完善。
 
-### `npm test`
+# 项目技术选型
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+这是整个项目的前端部分：
 
-### `npm run build`
+## 组件库
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+使用字节的@arco-design/react-mobile库，无他，工作中在使用arco-design的react库。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 构建
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+使用craco进行本地构建开发，配置文件在craco.config.js。
 
-### `npm run eject`
+安装依赖包`npm install`，node版本应大于18
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+本地开发使用`npm start`即可。
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 其他
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+其他用到的库目前就是axios了
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 部署
 
-## Learn More
+目前只有两个分支，master和preview，分别对应两个域名。 https://aiman.jackyqi.cn 和 https://preview.aiman.jackyqi.cn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+是使用了vercel的服务，代码提交后会自动构建。

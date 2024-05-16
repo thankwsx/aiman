@@ -5,20 +5,22 @@ import { IconAdd } from '@arco-design/mobile-react/esm/icon';
 export default function AccountItem() {
     const pickerRef = useRef(null);
     const currencyList = useMemo(() => {
-        return [[
-            { label: 'Monday', value: 'Monday' },
-            { label: 'Tuesday', value: 'Tuesday' },
-            { label: 'Wednesday', value: 'Wednesday' },
-            { label: 'Thursday', value: 'Thursday' },
-            { label: 'Friday', value: 'Friday' },
-            { label: 'Saturday', value: 'Saturday' },
-            { label: 'Sunday', value: 'Sunday' },
-        ], [
-            { label: 'Morning', value: 'Morning' },
-            { label: 'Afternoon', value: 'Afternoon' },
-            { label: 'Evening', value: 'Evening' },
-        ]
-        ]
+        return [[{
+            label: '微信',
+            value: 'Assets:Wechat:钱包'
+        }, {
+            label: '支付宝',
+            value: 'Assets:AliPay:零钱'
+        }], [{
+            label: 'RMB',
+            value: 'rmb'
+        }, {
+            label: 'USD',
+            value: 'usd'
+        }, {
+            label: 'HKD',
+            value: 'hkd',
+        }]]
     }, []);
 
     const accountList = [[{
@@ -26,7 +28,7 @@ export default function AccountItem() {
         value: 'Assets:Wechat:钱包'
     }]];
 
-    const [currencyValue, setCurrencyValue] = useState(['Wednesday', 'Afternoon']);
+    const [currencyValue, setCurrencyValue] = useState(['Assets:AliPay:零钱', 'rmb']);
 
     return (
         <div style={{

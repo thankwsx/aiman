@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
-import { Form, Button, Textarea, Tag, Input } from "@arco-design/mobile-react";
-import { useForm } from "@arco-design/mobile-react/esm/form";
+// import { Form, Button, Textarea, Tag, Input } from "@arco-design/mobile-react";
+import { Form, Button, TextArea as Textarea, Tag, Input } from 'antd-mobile';
+// import { useForm } from "@arco-design/mobile-react/esm/form";
 import styled from "styled-components";
 
 import AccountItem from "./AccountItem";
@@ -30,37 +31,62 @@ export default function BeancountRecord() {
     // const [toAccount, setToAccount] = useState([]);
 
     const formRef = useRef(null);
-    const [form] = useForm();
-    const [record, setRecord] = useState({
+    // const [form] = Form.useForm();
+
+    const initRecord = {
         'date': new Date().toISOString().substring(0, 10),
-    });
+        // 'account': ['Assets:Wechat', '钱包'],
+        // 'expense': ['Expenses:Family', 'Father'],
+        'payee': '商111', //商户
+        'money': '3.2',
+        'desc': '-',
+    };
 
     const handleSubmit = () => {
-        console.log('submit');
-        formRef.current.form.submit();
+        const values = formRef.current.getFieldsValue();
+        console.log(values);
     };
 
     const onSubmit = (values, result) => {
-        console.log(values);
+        console.log(values, result);
     };
+
+    // useEffect(() => {
+    //     setRecord(initRecord);
+    //     console.log('setfieldsvalue');
+    //     form.setFieldsValue(initRecord);
+    // }, []);
+
     return (<>
+        <span>记一笔</span>
+        <div>
+            <div>快捷录入模版</div>
+            <Tag filleted type="solid" onClick={() => {
+                formRef.current.setFieldsValue({
+                    'account': ['Assets:Wechat', '钱包'],
+                    'payee': '亲属卡',
+                });
+            }}>亲属卡</Tag>
+            <Tag filleted type="solid">工作餐</Tag>
+        </div>
         <StyledForm
-            ref={formRef} onSubmit={onSubmit} layout="vertical" onValuesChange={(cv, v) => {
-                console.log('change', cv, v);
-                setRecord({
-                    ...record,
-                    ...cv,
-                })
-            }}>
-            <span>记一笔</span>
-            <div>
-                <div>快捷录入模版</div>
-                <Tag filleted type="solid">亲属卡</Tag>
-                <Tag filleted type="solid">工作餐</Tag>
-            </div>
-            <AccountItem />
-            <ExpenseItem />
-            <Form.Item field="money" label="">
+            initialValues={initRecord}
+            ref={formRef}
+            onSubmit={onSubmit}
+            layout="vertical"
+        // onValuesChange={(cv, v) => {
+        // }}
+        >
+            <Form.Item name="date" label="">
+                <Input type="text" disabled />
+            </Form.Item>
+            <Form.Item name="account" label="" displayType="Picker">
+                <AccountItem />
+            </Form.Item>
+            <Form.Item name="expense" label="" displayType="Picker">
+                <ExpenseItem />
+            </Form.Item>
+            <Form.Item name="money" label="" required>
                 <Input
                     className="inputmoney"
                     prefix={<div className="demo-input-money">¥</div>}
@@ -69,19 +95,25 @@ export default function BeancountRecord() {
                     border="none"
                 />
             </Form.Item>
-            <Form.Item field="desc" label="">
+            <Form.Item name="payee" label="">
+                <Textarea placeholder="商户" rows={1}></Textarea>
+            </Form.Item>
+            <Form.Item name="desc" label="">
                 <Textarea placeholder="消费/交易 描述"></Textarea>
             </Form.Item>
-            <Button onClick={handleSubmit}>记一笔</Button>
-        </StyledForm>
+            <Button onClick={() => {
+                handleSubmit();
+            }}>记一笔</Button>
+        </StyledForm >
         <Textarea
             rows={5}
-            value={
-                `${record['date']} * "${record['desc']?.trim()}"
-    ${record['account']?.join(':')} -${Number(record['money'])?.toFixed(2)} CNY;
-    ${record['expense']?.join(':')} 
-            `
-            } />
+        //         value={
+        //             `${record['date']} * "${record['payee']?.trim()}" "${record['desc']?.trim()}"
+        // ${record['account']?.join(':')} -${Number(record['money'])?.toFixed(2)} CNY;
+        // ${record['expense']?.join(':')} 
+        //         `
+        //         } 
+        />
     </>
     );
 }

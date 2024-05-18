@@ -1,8 +1,14 @@
-import React, { useMemo, useRef } from 'react';
-import { Form, Picker, Cell } from "@arco-design/mobile-react";
+import React, { useMemo, useRef, useState } from 'react';
+// import { Picker, Cell } from "@arco-design/mobile-react";
+import { CascadePicker as Picker, Button } from "antd-mobile";
 // import { IconAdd } from '@arco-design/mobile-react/esm/icon';
 
-export default function AccountItem() {
+export default function AccountItem({
+    value = [],
+    onChange
+}) {
+    const [visible, setVisible] = useState(false);
+
     const pickerRef = useRef(null);
     const currencyList = useMemo(() => {
         return [{
@@ -30,26 +36,19 @@ export default function AccountItem() {
     }, []);
 
     // const [currencyValue, setCurrencyValue] = useState(['Assets:AliPay', '钱包']);
-
-    return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-        }}>
-            {/* <IconAdd /> */}
-            <Form.Item field="account" label="">
-                <Picker ref={pickerRef}
-                    // value={currencyValue}
-                    data={currencyList}
-                    cols={2}
-                    // onPickerChange={(val, index, data) => {
-                    //     console.log(val, index, data);
-                    // }}
-                    cascade={true} renderLinkedContainer={(_, data) => (
-                        <Cell label="扣费账户" showArrow bordered={false} >{data[1]?.label}</Cell>
-                    )}></Picker>
-            </Form.Item>
-        </div>
+    return (<>
+        <Button onClick={() => setVisible(true)}>选择账户</Button>{value.join(':')}
+        <Picker ref={pickerRef}
+            // value={currencyValue}
+            value={value}
+            options={currencyList}
+            visible={visible}
+            onClose={() => setVisible(false)}
+            onConfirm={(val, extend) => {
+                console.log(val, extend);
+                onChange(val);
+            }}
+        ></Picker >
+    </>
     );
 }

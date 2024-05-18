@@ -3,6 +3,8 @@ import './App.css';
 import Nav from './nav';
 import Diary from './diary';
 import Beancount from './beancount';
+import 'antd-mobile/es/global'
+
 function App() {
   const [menu, setMenu] = useState('account');
   return (

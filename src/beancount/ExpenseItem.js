@@ -1,8 +1,15 @@
-import React, { useMemo, useRef } from 'react';
-import { Form, Picker, Cell } from "@arco-design/mobile-react";
+import React, { useMemo, useRef, useState } from 'react';
+// import { Form, Picker, Cell } from "@arco-design/mobile-react";
+import { CascadePicker as Picker, Button } from "antd-mobile";
+
 // import { IconAdd } from '@arco-design/mobile-react/esm/icon';
 
-export default function AccountItem() {
+export default function ExpenseItem({
+    value = [],
+    onChange,
+}) {
+    const [visible, setVisible] = useState(false);
+
     const pickerRef = useRef(null);
     const expenseList = useMemo(() => {
         return [{
@@ -31,24 +38,17 @@ export default function AccountItem() {
     // const [currencyValue, setCurrencyValue] = useState(['Assets:AliPay', '钱包']);
 
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-        }}>
-            {/* <IconAdd /> */}
-            <Form.Item field="expense" label="">
-                <Picker ref={pickerRef}
-                    // value={currencyValue}
-                    data={expenseList}
-                    cols={2}
-                    // onPickerChange={(val, index, data) => {
-                    //     console.log(val, index, data);
-                    // }}
-                    cascade={true} renderLinkedContainer={(_, data) => (
-                        <Cell label="花费类目" showArrow bordered={false} >{data[1]?.label}</Cell>
-                    )}></Picker>
-            </Form.Item>
-        </div>
+        <>
+            <Button onClick={() => setVisible(true)}>选择花费</Button>{value.join(':')}
+            <Picker ref={pickerRef}
+                value={value}
+                options={expenseList}
+                visible={visible}
+                onClose={() => setVisible(false)}
+                onConfirm={(val, extend) => {
+                    onChange(val);
+                }}
+            ></Picker >
+        </>
     );
 }

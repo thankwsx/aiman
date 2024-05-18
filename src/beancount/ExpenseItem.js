@@ -4,27 +4,26 @@ import { Form, Picker, Cell } from "@arco-design/mobile-react";
 
 export default function AccountItem() {
     const pickerRef = useRef(null);
-    const currencyList = useMemo(() => {
+    const expenseList = useMemo(() => {
         return [{
-            label: '微信',
-            value: 'Assets:Wechat',
+            label: '家庭成员',
+            value: 'Expenses:Family',
             children: [{
-                label: '微信-零钱通',
-                value: '零钱通'
+                label: '父亲',
+                value: 'Father'
             }, {
-                label: '微信-钱包',
-                value: '钱包'
+                label: '母亲',
+                value: 'Mother'
             }]
         }, {
-            label: '支付宝',
-            value: 'Assets:AliPay',
+            label: '食物',
+            value: 'Expenses:Food',
             children: [{
-                label: '支付宝-钱包',
-                value: '钱包'
+                label: '饮料',
+                value: 'Drink'
             }, {
-                label: '支付宝-余额宝',
-                value: '余额宝'
-
+                label: '工作餐',
+                value: 'Work'
             }]
         }]
     }, []);
@@ -38,16 +37,16 @@ export default function AccountItem() {
             justifyContent: 'space-between'
         }}>
             {/* <IconAdd /> */}
-            <Form.Item field="account" label="">
+            <Form.Item field="expense" label="">
                 <Picker ref={pickerRef}
                     // value={currencyValue}
-                    data={currencyList}
+                    data={expenseList}
                     cols={2}
                     // onPickerChange={(val, index, data) => {
                     //     console.log(val, index, data);
                     // }}
                     cascade={true} renderLinkedContainer={(_, data) => (
-                        <Cell label="扣费账户" showArrow bordered={false} >{data[1]?.label}</Cell>
+                        <Cell label="花费类目" showArrow bordered={false} >{data[1]?.label}</Cell>
                     )}></Picker>
             </Form.Item>
         </div>

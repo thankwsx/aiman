@@ -1,9 +1,27 @@
 import { useState, useRef } from "react";
 import { Form, Button, Textarea, Tag, Input } from "@arco-design/mobile-react";
 import { useForm } from "@arco-design/mobile-react/esm/form";
+import styled from "styled-components";
 
 import AccountItem from "./AccountItem";
 import ExpenseItem from "./ExpenseItem";
+
+const StyledForm = styled(Form)`
+    .arco-form-label-item {
+        display: none;
+    }
+    .arco-form-item-control {
+        padding: 0;
+    }
+    .arco-cell-inner {
+        height: 1rem;
+    }
+    .inputmoney {
+        .arco-input-wrap {
+            height: 1rem;
+        }
+    }
+`;
 
 export default function BeancountRecord() {
     // 来源
@@ -26,13 +44,14 @@ export default function BeancountRecord() {
         console.log(values);
     };
     return (<>
-        <Form ref={formRef} onSubmit={onSubmit} layout="vertical" onValuesChange={(cv, v) => {
-            console.log('change', cv, v);
-            setRecord({
-                ...record,
-                ...cv,
-            })
-        }}>
+        <StyledForm
+            ref={formRef} onSubmit={onSubmit} layout="vertical" onValuesChange={(cv, v) => {
+                console.log('change', cv, v);
+                setRecord({
+                    ...record,
+                    ...cv,
+                })
+            }}>
             <span>记一笔</span>
             <div>
                 <div>快捷录入模版</div>
@@ -43,6 +62,7 @@ export default function BeancountRecord() {
             <ExpenseItem />
             <Form.Item field="money" label="">
                 <Input
+                    className="inputmoney"
                     prefix={<div className="demo-input-money">¥</div>}
                     placeholder="0.00"
                     type="number"
@@ -53,13 +73,15 @@ export default function BeancountRecord() {
                 <Textarea placeholder="消费/交易 描述"></Textarea>
             </Form.Item>
             <Button onClick={handleSubmit}>记一笔</Button>
-        </Form>
-        <Textarea value={
-            `${record['date']} * 
+        </StyledForm>
+        <Textarea
+            rows={5}
+            value={
+                `${record['date']} * "${record['desc']?.trim()}"
     ${record['account']?.join(':')} -${Number(record['money'])?.toFixed(2)} CNY;
     ${record['expense']?.join(':')} 
             `
-        } />
+            } />
     </>
     );
 }

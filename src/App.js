@@ -1,16 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Button } from 'antd-mobile';
 import './App.css';
 import Nav from './nav';
 import Diary from './diary';
 import Beancount from './beancount';
+import request from './utils/request';
 import 'antd-mobile/es/global'
 
 function App() {
-  const [menu, setMenu] = useState('account');
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    request.post('/userinfo').then(res => {
+      if (res.code !== 0) {
+        console.log('需要登录');
+        setIsLogin(false);
+      } else {
+        console.log('已登录');
+        setIsLogin(true);
+      }
+    });
+  }, []);
+
+  const [menu, setMenu] = useState('home');
   return (
     <div className="App">
       <div className="App-Content">
-        {menu === 'home' && <h4>Home</h4>}
+        {menu === 'home' && <h4>
+          {isLogin ? '欢迎回来' : <a href='https://api.aiman.jackyqi.cn/auth/github'>登录github</a>}
+          Home</h4>}
         {menu === 'diary' && <Diary />}
         {menu === 'account' && <Beancount />}
         {menu === 'settings' && <h4>Settings</h4>}

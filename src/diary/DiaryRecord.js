@@ -17,6 +17,8 @@ export default function DiaryRecord() {
                 formRef.current.form.resetFields();
                 notify('success', { content: '记录成功' });
             }
+        }, err => {
+            notify('error', { content: '记录失败' });
         });
     }
     return (<>

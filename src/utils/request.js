@@ -5,6 +5,9 @@ const request = axios.create({
     timeout: 5000
 });
 
+// 因为有跨域携带cookie的需求，所以需要设置withCredentials为true
+request.defaults.withCredentials = true;
+
 request.interceptors.request.use(
     config => {
         return config;

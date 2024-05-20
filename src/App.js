@@ -10,7 +10,9 @@ import 'antd-mobile/es/global'
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
-    request.post('/userinfo').then(res => {
+    request.post('/userinfo', null, {
+      withCredentials: true
+    }).then(res => {
       if (res.code !== 0) {
         console.log('需要登录');
         setIsLogin(false);

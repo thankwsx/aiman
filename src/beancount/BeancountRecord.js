@@ -3,6 +3,8 @@ import { useState, useRef } from "react";
 import { Form, Button, TextArea as Textarea, Tag, Input } from 'antd-mobile';
 // import { useForm } from "@arco-design/mobile-react/esm/form";
 import styled from "styled-components";
+import request from '../utils/request';
+import notify from '../utils/notify';
 
 import AccountItem from "./AccountItem";
 import ExpenseItem from "./ExpenseItem";
@@ -38,13 +40,22 @@ export default function BeancountRecord() {
         // 'account': ['Assets:Wechat', '钱包'],
         // 'expense': ['Expenses:Family', 'Father'],
         'payee': '商111', //商户
-        'money': '3.2',
+        'money': '0',
         'desc': '-',
     };
 
     const handleSubmit = () => {
         const values = formRef.current.getFieldsValue();
         console.log(values);
+        request.post('/beancount/create', values).then(res => {
+            console.log(res, res.code === 0);
+            if (res.code === 0) {
+                formRef.current.resetFields();
+                notify('success', { content: '记录成功' });
+            } else {
+                notify('error', { content: '记录失败' });
+            }
+        })
     };
 
     const onSubmit = (values, result) => {

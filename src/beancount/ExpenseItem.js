@@ -29,6 +29,9 @@ export default function ExpenseItem({
                 label: '饮料',
                 value: 'Drink'
             }, {
+                label: '生活食物',
+                value: 'Life'
+            }, {
                 label: '工作餐',
                 value: 'Work'
             }]

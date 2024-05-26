@@ -39,7 +39,7 @@ export default function BeancountRecord() {
         'date': new Date().toISOString().substring(0, 10),
         // 'account': ['Assets:Wechat', '钱包'],
         // 'expense': ['Expenses:Family', 'Father'],
-        'payee': '商111', //商户
+        'payee': '', //商户
         'money': '0',
         'desc': '-',
     };

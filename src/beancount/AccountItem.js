@@ -23,7 +23,7 @@ export default function AccountItem({
             }]
         }, {
             label: '支付宝',
-            value: 'Assets:AliPay',
+            value: 'Assets:Alipay',
             children: [{
                 label: '支付宝-钱包',
                 value: '钱包'

@@ -32,6 +32,13 @@ export default function AccountItem({
                 value: '余额宝'
 
             }]
+        }, {
+            label: '信用卡',
+            value: 'Liabilities:Bank',
+            children:[{
+                label: '中国银行9435',
+                value: '中国银行:信用卡9435'
+            }]
         }]
     }, []);
 

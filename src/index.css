@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+:root:root {
+  --adm-button-border-radius: 12px;
+  --adm-font-size-3: 20px;
+}
+

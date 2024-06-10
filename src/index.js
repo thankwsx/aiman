@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import setRootPixel from '@arco-design/mobile-react/tools/flexible';
 import '@arco-design/mobile-react/esm/style';
+// import '@arco-design/mobile-react/tools/touch2mouse';
 
 setRootPixel(50);
 const root = ReactDOM.createRoot(document.getElementById('root'));

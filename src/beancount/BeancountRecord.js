@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 // import { Form, Button, Textarea, Tag, Input } from "@arco-design/mobile-react";
-import { Form, Button, TextArea as Textarea, Tag, Input } from 'antd-mobile';
+import { Form, Button, TextArea as Textarea, Tag, Input, Space } from 'antd-mobile';
 // import { useForm } from "@arco-design/mobile-react/esm/form";
 import styled from "styled-components";
 import request from '../utils/request';
@@ -69,16 +69,60 @@ export default function BeancountRecord() {
     // }, []);
 
     return (<>
-        <span>记一笔</span>
+        <h2 style={{ paddingLeft: '16px', }}>记一笔</h2>
         <div>
-            <div>快捷录入模版</div>
-            <Tag filleted type="solid" onClick={() => {
-                formRef.current.setFieldsValue({
-                    'account': ['Assets:Wechat', '钱包'],
-                    'payee': '亲属卡',
-                });
-            }}>亲属卡</Tag>
-            <Tag filleted type="solid">工作餐</Tag>
+            <h3 style={{ paddingLeft: '16px', }}>快捷录入模版</h3>
+            <Space style={{
+                paddingLeft: '16px',
+                marginBottom: '16px',
+                fontSize: ''
+            }}>
+                <Tag color="primary" filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
+                        'payee': '亲属卡',
+                        'expense': ['Expenses:Family', 'Father'],
+                        'money': '0.00',
+                        'desc': '亲属卡',
+                    });
+                }}>亲属卡</Tag>
+                <Tag color="primary" filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
+                        'expense': ['Expenses:Food', 'Work'],
+                        'payee': '美团',
+                        'money': '0.00',
+                        'desc': '',
+                    });
+                }}>工作餐</Tag>
+                <Tag color="primary" filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Liabilities:Bank', '中国银行:信用卡9435'],
+                        'expense': ['Expenses:Life', 'Daily'],
+                        'payee': '京东',
+                        'money': '0.00',
+                        'desc': '',
+                    });
+                }}>京东</Tag>
+                <Tag filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Alipay', '余额宝'],
+                        'expense': ['Expenses:Food', 'Drink'],
+                        'payee': '喜士多',
+                        'money': '0.00',
+                        'desc': '买水'
+                    });
+                }}>喜士多</Tag>
+                <Tag filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Alipay', '余额宝'],
+                        'expense': [],
+                        'payee': '龙哥',
+                        'money': '20.00',
+                        'desc': '理发',
+                    });
+                }}>理发</Tag>
+            </Space>
         </div>
         <StyledForm
             initialValues={initRecord}

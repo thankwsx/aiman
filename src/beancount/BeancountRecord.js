@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 // import { Form, Button, Textarea, Tag, Input } from "@arco-design/mobile-react";
-import { Form, Button, TextArea as Textarea, Tag, Input, Space } from 'antd-mobile';
+import { CalendarPicker, Form, Button, TextArea as Textarea, Tag, Input, Space } from 'antd-mobile';
 // import { useForm } from "@arco-design/mobile-react/esm/form";
 import styled from "styled-components";
 import request from '../utils/request';
@@ -34,9 +34,15 @@ export default function BeancountRecord() {
 
     const formRef = useRef(null);
     // const [form] = Form.useForm();
-
+    const dateFormatOption = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    };
+    const [dayDate, setDayDate] = useState(new Date().toLocaleString(undefined, dateFormatOption).replace(/\//g, '-'));
+    const [dateVisible, setDateVisible] = useState(false);
     const initRecord = {
-        'date': new Date().toISOString().substring(0, 10),
+        'date': dayDate,
         // 'account': ['Assets:Wechat', '钱包'],
         // 'expense': ['Expenses:Family', 'Father'],
         'payee': '', //商户
@@ -46,8 +52,10 @@ export default function BeancountRecord() {
 
     const handleSubmit = () => {
         const values = formRef.current.getFieldsValue();
-        console.log(values);
-        request.post('/beancount/create', values).then(res => {
+        request.post('/beancount/create', {
+            ...values,
+            date: dayDate
+        }).then(res => {
             console.log(res, res.code === 0);
             if (res.code === 0) {
                 formRef.current.resetFields();
@@ -132,8 +140,14 @@ export default function BeancountRecord() {
         // onValuesChange={(cv, v) => {
         // }}
         >
-            <Form.Item name="date" label="">
-                <Input type="text" disabled />
+            <Form.Item label="">
+                <Input
+                    value={dayDate}
+                    onClick={() => setDateVisible(true)} />
+                <CalendarPicker visible={dateVisible} selectionMode='single' value={dayDate} onClose={() => setDateVisible(false)}
+                    onMaskClick={() => setDateVisible(false)} onChange={(val) => {
+                        setDayDate(new Date(val).toLocaleString(undefined, dateFormatOption).replace(/\//g, '-'));
+                    }} />
             </Form.Item>
             <Form.Item name="account" label="" displayType="Picker">
                 <AccountItem />

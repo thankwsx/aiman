@@ -123,6 +123,15 @@ export default function BeancountRecord() {
                 }}>喜士多</Tag>
                 <Tag filleted type="solid" onClick={() => {
                     formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
+                        'expense': ['Expenses:Repeat', 'Communication'],
+                        'payee': '中国联通',
+                        'money': '29.55',
+                        'desc': '联通定期自动充值'
+                    });
+                }}>充值</Tag>
+                <Tag filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
                         'account': ['Assets:Alipay', '余额宝'],
                         'expense': [],
                         'payee': '龙哥',

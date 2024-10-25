@@ -139,6 +139,15 @@ export default function BeancountRecord() {
                         'desc': '理发',
                     });
                 }}>理发</Tag>
+                <Tag filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Bank', '招商银行:借记卡8109'],
+                        'expense': ['Liabilities:Bank', '中国银行:信用卡9435'],
+                        'payee': '中国银行',
+                        'money': '0.00',
+                        'desc': '信用卡还贷',
+                    });
+                }}>中国银行信用卡</Tag>
             </Space>
         </div>
         <StyledForm

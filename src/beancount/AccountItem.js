@@ -39,6 +39,16 @@ export default function AccountItem({
                 label: '中国银行9435',
                 value: '中国银行:信用卡9435'
             }]
+        }, {
+            label: '银行卡',
+            value: 'Assets:Bank',
+            children: [{
+                label: '招商银行0222',
+                value: '招商银行:借记卡0222'
+            }, {
+                label: '招商银行8109',
+                value: '招商银行:借记卡8109'
+            }]
         }]
     }, []);
 

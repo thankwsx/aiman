@@ -26,6 +26,12 @@ const StyledForm = styled(Form)`
     }
 `;
 
+const StyledSpace = styled(Space)`
+    .adm-space-item {
+        margin-bottom: 8px;
+    }
+`;
+
 export default function BeancountRecord() {
     // 来源
     // const [fromAccount, setFromAccount] = useState([]);
@@ -80,11 +86,13 @@ export default function BeancountRecord() {
         <h2 style={{ paddingLeft: '16px', }}>记一笔</h2>
         <div>
             <h3 style={{ paddingLeft: '16px', }}>快捷录入模版</h3>
-            <Space style={{
-                paddingLeft: '16px',
-                marginBottom: '16px',
-                fontSize: ''
-            }}>
+            <StyledSpace
+                style={{
+                    paddingLeft: '16px',
+                    marginBottom: '16px',
+                    fontSize: '',
+                    flexWrap: 'wrap',
+                }}>
                 <Tag color="primary" filleted type="solid" onClick={() => {
                     formRef.current.setFieldsValue({
                         'account': ['Assets:Wechat', '钱包'],
@@ -148,7 +156,7 @@ export default function BeancountRecord() {
                         'desc': '信用卡还贷',
                     });
                 }}>中国银行信用卡</Tag>
-            </Space>
+            </StyledSpace>
         </div>
         <StyledForm
             initialValues={initRecord}

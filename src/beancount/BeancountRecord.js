@@ -149,6 +149,15 @@ export default function BeancountRecord() {
                 }}>理发</Tag>
                 <Tag filleted type="solid" onClick={() => {
                     formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
+                        'expense': ['Expenses:Family', 'Laoda'],
+                        'payee': '老大',
+                        'money': '200.00',
+                        'desc': '日常零用',
+                    });
+                }}>老大零用钱</Tag>
+                <Tag filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
                         'account': ['Assets:Bank', '招商银行:借记卡8109'],
                         'expense': ['Liabilities:Bank', '中国银行:信用卡9435'],
                         'payee': '中国银行',
@@ -156,6 +165,24 @@ export default function BeancountRecord() {
                         'desc': '信用卡还贷',
                     });
                 }}>中国银行信用卡</Tag>
+                <Tag filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
+                        'expense': ['Expenses:Repeat', 'Cloud'],
+                        'payee': 'iCloud',
+                        'money': '6.00',
+                        'desc': 'iCloud云上贵州',
+                    });
+                }}>iCloud云上贵州</Tag>
+                <Tag filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
+                        'expense': ['Expenses:Repeat', 'Cloud'],
+                        'payee': 'aliyun',
+                        'money': '20.00',
+                        'desc': '阿里云盘',
+                    });
+                }}>阿里云盘</Tag>
             </StyledSpace>
         </div>
         <StyledForm

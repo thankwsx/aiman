@@ -105,6 +105,24 @@ export default function BeancountRecord() {
                 <Tag color="primary" filleted type="solid" onClick={() => {
                     formRef.current.setFieldsValue({
                         'account': ['Assets:Wechat', '钱包'],
+                        'expense': ['Expenses:Traffic', 'Car'],
+                        'payee': '中石化',
+                        'money': '300.00',
+                        'desc': '加油',
+                    });
+                }}>中石化加油</Tag>
+                <Tag color="primary" filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
+                        'expense': ['Expenses:Traffic', 'Parking'],
+                        'payee': '停车场',
+                        'money': '10.00',
+                        'desc': '停车',
+                    });
+                }}>停车</Tag>
+                <Tag color="primary" filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
                         'expense': ['Expenses:Food', 'Work'],
                         'payee': '美团',
                         'money': '0.00',

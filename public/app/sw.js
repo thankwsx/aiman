@@ -1,8 +1,8 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.5.4/workbox-sw.js');
+// importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.5.4/workbox-sw.js');
 
-workbox.setConfig({
-  debug: true,
-});
+// workbox.setConfig({
+//   debug: true,
+// });
 
 // Establish a cache name
 const cacheName = "myimages-v1";

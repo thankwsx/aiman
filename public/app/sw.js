@@ -9,7 +9,7 @@ const cacheName = "myimages-v1";
 
 // Assets to precache
 const precachedAssets = [
-  "https://alpha.adbi.moonton.net/e74e41f11a96a1402330.png",
+  "https://cdn.glitch.me/32cd740a-9733-4e5d-b961-b3aed2769895%2Fpossum1.jpg",
 ];
 
 self.addEventListener("install", event => {

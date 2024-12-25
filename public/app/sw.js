@@ -4,7 +4,7 @@ const cacheName = "MyFancyCacheName_v1";
 
 // Assets to precache
 const precachedAssets = [
-  "https://cdn.glitch.me/32cd740a-9733-4e5d-b961-b3aed2769895%2Fpossum1.jpg",
+  "https://aiman.jackyqi.cn/1.jpg",
 ];
 
 self.addEventListener("install", event => {
@@ -14,6 +14,7 @@ self.addEventListener("install", event => {
 });
 
 self.addEventListener("fetch", event => {
+  console.log("Fetch event for: " + event.request.url);
   const isPrecachedRequest = precachedAssets.includes(event.request.url);
   
   if (isPrecachedRequest) {

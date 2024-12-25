@@ -29,6 +29,36 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <img src="https://alpha.adbi.moonton.net/e74e41f11a96a1402330.png" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/app/sw.js?v=1.2.0').then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+            // 强制激活新的 Service Worker
+            if (registration.waiting) {
+              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+            }
+  
+            registration.addEventListener('updatefound', () => {
+              if (registration.installing) {
+                registration.installing.addEventListener('statechange', () => {
+                  console.log(registration.installing);
+                  // if (registration.installing.state === 'installed' && navigator.serviceWorker.controller) {
+                    // registration.installing.postMessage({ type: 'SKIP_WAITING' });
+                  // }
+                });
+              }
+            });
+          }).catch(error => {
+            console.log('Service Worker registration failed:', error);
+          });
+        });
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          window.location.reload();
+        });
+      }
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

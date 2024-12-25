@@ -33,29 +33,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/app/sw.js?v=1.2.0').then(registration => {
-            console.log('Service Worker registered with scope:', registration.scope);
-            // 强制激活新的 Service Worker
-            if (registration.waiting) {
-              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-            }
-  
-            registration.addEventListener('updatefound', () => {
-              if (registration.installing) {
-                registration.installing.addEventListener('statechange', () => {
-                  console.log(registration.installing);
-                  // if (registration.installing.state === 'installed' && navigator.serviceWorker.controller) {
-                    // registration.installing.postMessage({ type: 'SKIP_WAITING' });
-                  // }
-                });
-              }
-            });
-          }).catch(error => {
-            console.log('Service Worker registration failed:', error);
-          });
-        });
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          window.location.reload();
+          navigator.serviceWorker.register('/app/sw.js?v=1.2.0')
         });
       }
     </script>

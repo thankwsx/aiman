@@ -1,11 +1,6 @@
-// importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.5.4/workbox-sw.js');
-
-// workbox.setConfig({
-//   debug: true,
-// });
 
 // Establish a cache name
-const cacheName = "myimages-v1";
+const cacheName = "MyFancyCacheName_v1";
 
 // Assets to precache
 const precachedAssets = [
@@ -20,7 +15,7 @@ self.addEventListener("install", event => {
 
 self.addEventListener("fetch", event => {
   const isPrecachedRequest = precachedAssets.includes(event.request.url);
-
+  
   if (isPrecachedRequest) {
     event.respondWith(caches.open(cacheName).then(cache => {
       console.log("Cache only request for: " + event.request.url);
@@ -34,4 +29,4 @@ self.addEventListener("fetch", event => {
   }
 });
 
-
+console.log(self);

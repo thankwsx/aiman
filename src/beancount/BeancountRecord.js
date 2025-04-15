@@ -196,6 +196,15 @@ export default function BeancountRecord() {
                     formRef.current.setFieldsValue({
                         'account': ['Assets:Wechat', '钱包'],
                         'expense': ['Expenses:Repeat', 'Cloud'],
+                        'payee': '海雀',
+                        'money': '9.90',
+                        'desc': '海雀月费',
+                    });
+                }}>海雀月费</Tag>
+                <Tag filleted type="solid" onClick={() => {
+                    formRef.current.setFieldsValue({
+                        'account': ['Assets:Wechat', '钱包'],
+                        'expense': ['Expenses:Repeat', 'Cloud'],
                         'payee': 'aliyun',
                         'money': '20.00',
                         'desc': '阿里云盘',

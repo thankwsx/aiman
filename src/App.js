@@ -19,6 +19,9 @@ function App() {
         console.log('已登录');
         setIsLogin(true);
       }
+    }).catch(e => {
+      console.log('需要登录');
+      setIsLogin(false);
     });
   }
   useEffect(() => {

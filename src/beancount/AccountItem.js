@@ -40,7 +40,7 @@ export default function AccountItem({
                 value: '中国银行:信用卡9435'
             }, {
                 label: '招商银行7441',
-                value: '中国银行:信用卡7441'
+                value: '招商银行:信用卡7441'
             }]
         }, {
             label: '银行卡',
